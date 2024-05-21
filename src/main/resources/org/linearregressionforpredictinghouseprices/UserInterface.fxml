@@ -1,14 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.linearregressionforpredictinghouseprices.UserInterfaceController"
-            prefHeight="400.0" prefWidth="600.0">
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.linearregressionforpredictinghouseprices.UserInterfaceController">
+    <top>
+        <VBox spacing="10" alignment="CENTER" styleClass="header">
+            <Label text="Linear Regression for Predicting House Prices" styleClass="header-title" />
+            <Label text="Using the UCI Real Estate Valuation Dataset" styleClass="header-subtitle" />
+            <Label text="Parameters used for prediction: Transaction Date, House Age, Distance to MRT, Number of Convenience Stores, Latitude, Longitude" styleClass="header-subtitle" wrapText="true"/>
+        </VBox>
+    </top>
+    <center>
+        <GridPane hgap="10" vgap="10" styleClass="container">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+            <Label text="Transaction Date:" styleClass="form-label" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+            <TextField fx:id="transactionDateField" styleClass="form-control" GridPane.rowIndex="0" GridPane.columnIndex="1" />
 
-</AnchorPane>
+            <Label text="House Age:" styleClass="form-label" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+            <TextField fx:id="houseAgeField" styleClass="form-control" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+
+            <Label text="Distance to MRT:" styleClass="form-label" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+            <TextField fx:id="distanceToMRTField" styleClass="form-control" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+
+            <Label text="Number of Convenience Stores:" styleClass="form-label" GridPane.rowIndex="3" GridPane.columnIndex="0" />
+            <TextField fx:id="numConvenienceStoresField" styleClass="form-control" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+
+            <Label text="Latitude:" styleClass="form-label" GridPane.rowIndex="4" GridPane.columnIndex="0" />
+            <TextField fx:id="latitudeField" styleClass="form-control" GridPane.rowIndex="4" GridPane.columnIndex="1" />
+
+            <Label text="Longitude:" styleClass="form-label" GridPane.rowIndex="5" GridPane.columnIndex="0" />
+            <TextField fx:id="longitudeField" styleClass="form-control" GridPane.rowIndex="5" GridPane.columnIndex="1" />
+
+            <Button text="Predict Price" onAction="#handlePredictPrice" styleClass="btn btn-primary" GridPane.rowIndex="6" GridPane.columnIndex="1" />
+
+            <Label text="Predicted Price:" styleClass="form-label" GridPane.rowIndex="7" GridPane.columnIndex="0" />
+            <TextField fx:id="predictedPriceField" styleClass="form-control" GridPane.rowIndex="7" GridPane.columnIndex="1" />
+
+            <Button text="Data Visualization" onAction="#handleDataVisualization" styleClass="btn btn-secondary" GridPane.rowIndex="8" GridPane.columnIndex="1" />
+            <Button text="Exit" onAction="#handleExit" styleClass="btn btn-secondary" GridPane.rowIndex="9" GridPane.columnIndex="1" />
+        </GridPane>
+    </center>
+    <bottom>
+        <HBox alignment="CENTER" styleClass="footer">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <Label text="© 2024 Real Estate Price Predictor" />
+        </HBox>
+    </bottom>
+</BorderPane>
