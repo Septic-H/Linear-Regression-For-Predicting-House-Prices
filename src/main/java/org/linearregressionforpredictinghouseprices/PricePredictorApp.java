@@ -13,7 +13,7 @@ public class PricePredictorApp extends Application {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("UserInterface.fxml"));
             BorderPane root = loader.load();
             Scene scene = new Scene(root);
-            scene.getStylesheets().add(getClass().getResource("lightTheme.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
             primaryStage.setScene(scene);
             primaryStage.setTitle("Linear Regression for Predicting House Prices");
             primaryStage.show();

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.linearregressionforpredictinghouseprices.VisualizationController">
+
+    <top>
+        <VBox spacing="10" alignment="CENTER" styleClass="header">
+            <Label text="Linear Regression for Predicting House Prices" styleClass="header-title" />
+            <Label text="Using the UCI Real Estate Valuation Dataset" styleClass="header-subtitle" />
+            <Label text="Parameters used for prediction: Transaction Date, House Age, Distance to MRT, Number of Convenience Stores, Latitude, Longitude" styleClass="header-subtitle" wrapText="true"/>
+        </VBox>
+    </top>
+    <center>
+        <ScrollPane fitToWidth="true" fitToHeight="true">
+
+        </ScrollPane>
+    </center>
+    <bottom>
+        <HBox alignment="CENTER" styleClass="footer">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <Label text="© 2024 Real Estate Price Predictor" />
+        </HBox>
+    </bottom>
+</BorderPane>

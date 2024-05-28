@@ -1,5 +1,5 @@
 .header {
-    -fx-background-color: #000000;
+    -fx-background-color: #ffffff;
     -fx-padding: 20px;
 }
 
@@ -56,6 +56,6 @@
 }
 
 .footer {
-    -fx-background-color: #000000;
+    -fx-background-color: #ffffff;
     -fx-text-fill: #2c3e50;
 }
