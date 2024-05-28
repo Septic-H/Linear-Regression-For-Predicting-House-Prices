@@ -4,6 +4,7 @@ module org.linearregressionforpredictinghouseprices {
 
     requires org.controlsfx.controls;
     requires org.kordamp.bootstrapfx.core;
+    requires java.sql;
 
     opens org.linearregressionforpredictinghouseprices to javafx.fxml;
     exports org.linearregressionforpredictinghouseprices;

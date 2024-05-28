@@ -167,6 +167,10 @@ public class UserInterfaceController {
 
         // display the price
         predictedPriceField.setText(String.valueOf(predictedPrice));
+
+        // save the input values and the predicted price to the database
+        SaveToDatabase saveToDatabase = new SaveToDatabase();
+        saveToDatabase.saveToDatabase(houseAge, distanceToMRT, numConvenienceStores, latitude, longitude, predictedPrice);
     }
 
     @FXML
