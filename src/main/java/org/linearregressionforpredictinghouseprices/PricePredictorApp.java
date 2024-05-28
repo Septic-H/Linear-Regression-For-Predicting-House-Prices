@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class PricePredictorApp extends Application {
@@ -14,6 +15,7 @@ public class PricePredictorApp extends Application {
             BorderPane root = loader.load();
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
+            primaryStage.getIcons().add(new Image("file:data/icon.jpg"));
             primaryStage.setScene(scene);
             primaryStage.setTitle("Linear Regression for Predicting House Prices");
             primaryStage.show();

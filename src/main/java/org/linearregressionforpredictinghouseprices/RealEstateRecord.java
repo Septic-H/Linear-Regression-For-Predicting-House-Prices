@@ -65,4 +65,3 @@ public class RealEstateRecord {
         this.price = price;
     }
 }
-

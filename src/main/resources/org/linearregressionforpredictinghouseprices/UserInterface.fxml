@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.linearregressionforpredictinghouseprices.UserInterfaceController">
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:id="mainBorderPane" fx:controller="org.linearregressionforpredictinghouseprices.UserInterfaceController">
     <top>
         <VBox spacing="10" alignment="CENTER" styleClass="header">
             <Label text="Linear Regression for Predicting House Prices" styleClass="header-title" />
@@ -17,27 +17,36 @@
             <padding>
                 <Insets top="20" right="20" bottom="20" left="20"/>
             </padding>
-            <Label text="Transaction Date:" styleClass="form-label" GridPane.rowIndex="0" GridPane.columnIndex="0" />
-            <TextField fx:id="transactionDateField" styleClass="form-control" GridPane.rowIndex="0" GridPane.columnIndex="1" />
-
             <Label text="House Age:" styleClass="form-label" GridPane.rowIndex="1" GridPane.columnIndex="0" />
-            <TextField fx:id="houseAgeField" styleClass="form-control" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+            <Label text="Enter the age of the house in years" GridPane.rowIndex="1" GridPane.columnIndex="2" styleClass="sub-title"/>
+
+            <TextField fx:id="houseAgeField" styleClass="form-control" GridPane.rowIndex="1" GridPane.columnIndex="1" onKeyTyped="#handleInputValidation" />
 
             <Label text="Distance to MRT:" styleClass="form-label" GridPane.rowIndex="2" GridPane.columnIndex="0" />
-            <TextField fx:id="distanceToMRTField" styleClass="form-control" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+            <Label text="Enter the distance to the nearest MRT station in meters" GridPane.rowIndex="2" GridPane.columnIndex="2" styleClass="sub-title"/>
+
+            <TextField fx:id="distanceToMRTField" styleClass="form-control" GridPane.rowIndex="2" GridPane.columnIndex="1" onKeyTyped="#handleInputValidation" />
 
             <Label text="Number of Convenience Stores:" styleClass="form-label" GridPane.rowIndex="3" GridPane.columnIndex="0" />
-            <TextField fx:id="numConvenienceStoresField" styleClass="form-control" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+            <Label text="Enter the number of convenience stores in the living circle on foot" GridPane.rowIndex="3" GridPane.columnIndex="2" styleClass="sub-title"/>
+
+            <TextField fx:id="numConvenienceStoresField" styleClass="form-control" GridPane.rowIndex="3" GridPane.columnIndex="1" onKeyTyped="#handleInputValidation" />
 
             <Label text="Latitude:" styleClass="form-label" GridPane.rowIndex="4" GridPane.columnIndex="0" />
-            <TextField fx:id="latitudeField" styleClass="form-control" GridPane.rowIndex="4" GridPane.columnIndex="1" />
+            <Label text="Enter the geographic coordinate, latitude. (Range: -90 to +90)" GridPane.rowIndex="4" GridPane.columnIndex="2" styleClass="sub-title"/>
+
+            <TextField fx:id="latitudeField" styleClass="form-control" GridPane.rowIndex="4" GridPane.columnIndex="1" onKeyTyped="#handleInputValidation" />
 
             <Label text="Longitude:" styleClass="form-label" GridPane.rowIndex="5" GridPane.columnIndex="0" />
-            <TextField fx:id="longitudeField" styleClass="form-control" GridPane.rowIndex="5" GridPane.columnIndex="1" />
+            <Label text="Enter the geographic coordinate, longitude. (Range: -180 to +180)" GridPane.rowIndex="5" GridPane.columnIndex="2" styleClass="sub-title"/>
 
-            <Button text="Predict Price" onAction="#handlePredictPrice" styleClass="btn btn-primary" GridPane.rowIndex="6" GridPane.columnIndex="1" />
+            <TextField fx:id="longitudeField" styleClass="form-control" GridPane.rowIndex="5" GridPane.columnIndex="1" onKeyTyped="#handleInputValidation" />
 
-            <Label text="Predicted Price:" styleClass="form-label" GridPane.rowIndex="7" GridPane.columnIndex="0" />
+            <Label fx:id="errorLabel" text="" GridPane.rowIndex="6" GridPane.columnIndex="3" style="-fx-font-style: italic; -fx-text-fill: darkred; -fx-pref-width: 300px;"/>
+
+            <Button fx:id="predictPriceButton" text="Predict Price" onAction="#handlePredictPrice" styleClass="btn btn-primary" GridPane.rowIndex="6" GridPane.columnIndex="1" />
+
+            <Label text="Predicted Price($):" styleClass="form-label" GridPane.rowIndex="7" GridPane.columnIndex="0" />
             <TextField fx:id="predictedPriceField" styleClass="form-control" GridPane.rowIndex="7" GridPane.columnIndex="1" />
 
             <Button text="Data Visualization" onAction="#handleDataVisualization" styleClass="btn btn-secondary" GridPane.rowIndex="8" GridPane.columnIndex="1" />
