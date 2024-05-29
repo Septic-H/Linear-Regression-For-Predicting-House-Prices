@@ -12,7 +12,10 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+
+import java.io.File;
 import java.util.List;
+import java.util.Objects;
 
 public class UserInterfaceController {
     @FXML
@@ -175,8 +178,14 @@ public class UserInterfaceController {
 
     @FXML
     private void handleDataVisualization(ActionEvent event) {
-        DataVisualization dataVisualization = new DataVisualization();
-        dataVisualization.generateVisualizations("scripts/generate_visualizations.py");
+        File visualsDir = new File("visuals");
+
+        if (visualsDir.exists() && visualsDir.isDirectory() && Objects.requireNonNull(visualsDir.list()).length == 7) {
+            System.out.println("Visualizations found.");
+        } else {
+            DataVisualization dataVisualization = new DataVisualization();
+            dataVisualization.generateVisualizations("scripts/generate_visualizations.py");
+        }
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Visualization.fxml"));

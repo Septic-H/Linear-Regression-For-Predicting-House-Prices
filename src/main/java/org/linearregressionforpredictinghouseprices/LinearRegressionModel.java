@@ -24,36 +24,94 @@ public class LinearRegressionModel {
         coefficients = calculateCoefficients(X, y);
     }
 
-    private double[] calculateCoefficients(double[][] X, double[] y) {
+    private static double[] calculateCoefficients(double[][] X, double[] y) {
         int numFeatures = X[0].length;
-        double[] coefficients = new double[numFeatures];
-        double[] residuals = new double[y.length];
+        int numSamples = y.length;
 
+        // compute X^T * X
+        double[][] XtX = new double[numFeatures][numFeatures];
         for (int i = 0; i < numFeatures; i++) {
-            double sum = 0;
-            for (int j = 0; j < y.length; j++) {
-                sum += X[j][i] * y[j];
+            for (int j = 0; j < numFeatures; j++) {
+                for (int k = 0; k < numSamples; k++) {
+                    XtX[i][j] += X[k][i] * X[k][j];
+                }
             }
-            double mean = sum / y.length;
-            coefficients[i] = mean;
         }
 
-        for (int i = 0; i < y.length; i++) {
-            double prediction = 0;
-            for (int j = 0; j < numFeatures; j++) {
-                prediction += coefficients[j] * X[i][j];
+        // compute X^T * y
+        double[] Xty = new double[numFeatures];
+        for (int i = 0; i < numFeatures; i++) {
+            for (int k = 0; k < numSamples; k++) {
+                Xty[i] += X[k][i] * y[k];
             }
-            residuals[i] = y[i] - prediction;
+        }
+
+        // compute the inverse of X^T * X
+        double[][] XtX_inv = invertMatrix(XtX);
+
+        // compute the coefficients: (X^T * X)^-1 * X^T * y
+        double[] coefficients = new double[numFeatures];
+        for (int i = 0; i < numFeatures; i++) {
+            for (int j = 0; j < numFeatures; j++) {
+                coefficients[i] += XtX_inv[i][j] * Xty[j];
+            }
         }
 
         return coefficients;
     }
 
+    // matrix inversion using Gauss-Jordan elimination
+    private static double[][] invertMatrix(double[][] matrix) {
+        int n = matrix.length;
+        double[][] augmentedMatrix = new double[n][2*n];
+
+        // create augmented matrix
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                augmentedMatrix[i][j] = matrix[i][j];
+            }
+            augmentedMatrix[i][i+n] = 1;
+        }
+
+        // apply Gauss-Jordan elimination
+        for (int i = 0; i < n; i++) {
+            // Make the diagonal contain all 1's
+            double diagonalElement = augmentedMatrix[i][i];
+            for (int j = 0; j < 2*n; j++) {
+                augmentedMatrix[i][j] /= diagonalElement;
+            }
+
+            // make the other elements in the current column 0
+            for (int k = 0; k < n; k++) {
+                if (k != i) {
+                    double factor = augmentedMatrix[k][i];
+                    for (int j = 0; j < 2*n; j++) {
+                        augmentedMatrix[k][j] -= factor * augmentedMatrix[i][j];
+                    }
+                }
+            }
+        }
+
+        // extract the inverse matrix
+        double[][] inverseMatrix = new double[n][n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                inverseMatrix[i][j] = augmentedMatrix[i][j+n];
+            }
+        }
+
+        return inverseMatrix;
+    }
+
     public double predictPrice(double houseAge, double distanceToMRT, int numConvenienceStores, double latitude, double longitude) {
         double price = coefficients[0] * houseAge + coefficients[1] * distanceToMRT + coefficients[2] * numConvenienceStores + coefficients[3] * latitude + coefficients[4] * longitude;
 
+        // Y= house price of unit area (10000 New Taiwan Dollar/Ping, where Ping is a local unit, 1 Ping = 3.3 meter squared)
+        price *= 10000;
+        // this figure shows the price of a house in taiwan new dollar per ping(3.3 meter squared)
+
         // price is predicted in taiwan new dollar, conversion to usd
-        price = price * 0.031075628;
+        price *= 0.031075628;
 
         price = Math.round(price * 100.0) / 100.0;
 

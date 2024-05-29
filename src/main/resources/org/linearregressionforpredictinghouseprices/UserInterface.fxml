@@ -48,6 +48,7 @@
 
             <Label text="Predicted Price($):" styleClass="form-label" GridPane.rowIndex="7" GridPane.columnIndex="0" />
             <TextField fx:id="predictedPriceField" styleClass="form-control" GridPane.rowIndex="7" GridPane.columnIndex="1" />
+            <Label text="This predicted price is per unit area. Area being used is Ping (1 Ping = 3.3 meter squared)." GridPane.rowIndex="7" GridPane.columnIndex="2" styleClass="sub-title"/>
 
             <Button text="Data Visualization" onAction="#handleDataVisualization" styleClass="btn btn-secondary" GridPane.rowIndex="8" GridPane.columnIndex="1" />
             <Button text="Exit" onAction="#handleExit" styleClass="btn btn-secondary" GridPane.rowIndex="9" GridPane.columnIndex="1" />
