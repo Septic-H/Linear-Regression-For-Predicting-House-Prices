@@ -62,7 +62,7 @@
             <padding>
                 <Insets top="10" right="10" bottom="10" left="10"/>
             </padding>
-            <Label text="© 2024 Real Estate Price Predictor" />
+            <Label text="© 2024 Real Estate Price Predictor" styleClass="footer-text"/>
         </HBox>
     </bottom>
 </BorderPane>
