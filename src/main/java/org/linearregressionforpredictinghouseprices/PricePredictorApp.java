@@ -7,6 +7,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import java.util.Objects;
+
 public class PricePredictorApp extends Application {
     @Override
     public void start(Stage primaryStage) {
@@ -14,13 +16,13 @@ public class PricePredictorApp extends Application {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("UserInterface.fxml"));
             BorderPane root = loader.load();
             Scene scene = new Scene(root);
-            scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles.css")).toExternalForm());
             primaryStage.getIcons().add(new Image("file:data/icon.jpg"));
             primaryStage.setScene(scene);
             primaryStage.setTitle("Linear Regression for Predicting House Prices");
             primaryStage.show();
         } catch (Exception e) {
-            e.printStackTrace();
+            e.getMessage();
         }
     }
 

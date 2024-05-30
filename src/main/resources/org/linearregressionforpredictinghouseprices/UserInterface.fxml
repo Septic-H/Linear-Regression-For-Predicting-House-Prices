@@ -9,7 +9,7 @@
         <VBox spacing="10" alignment="CENTER" styleClass="header">
             <Label text="Linear Regression for Predicting House Prices" styleClass="header-title" />
             <Label text="Using the UCI Real Estate Valuation Dataset" styleClass="header-subtitle" />
-            <Label text="Parameters used for prediction: Transaction Date, House Age, Distance to MRT, Number of Convenience Stores, Latitude, Longitude" styleClass="header-subtitle" wrapText="true"/>
+            <Label text="Parameters used for prediction: House Age, Distance to MRT, Number of Convenience Stores, Latitude, Longitude" styleClass="header-subtitle" wrapText="true"/>
         </VBox>
     </top>
     <center>
@@ -46,12 +46,15 @@
 
             <Button fx:id="predictPriceButton" text="Predict Price" onAction="#handlePredictPrice" styleClass="btn btn-primary" GridPane.rowIndex="6" GridPane.columnIndex="1" />
 
-            <Label text="Predicted Price($):" styleClass="form-label" GridPane.rowIndex="7" GridPane.columnIndex="0" />
+            <Label text="Predicted Price(USD):" styleClass="form-label" GridPane.rowIndex="7" GridPane.columnIndex="0" />
             <TextField fx:id="predictedPriceField" styleClass="form-control" GridPane.rowIndex="7" GridPane.columnIndex="1" />
             <Label text="This predicted price is per unit area. Area being used is Ping (1 Ping = 3.3 meter squared)." GridPane.rowIndex="7" GridPane.columnIndex="2" styleClass="sub-title"/>
 
-            <Button text="Data Visualization" onAction="#handleDataVisualization" styleClass="btn btn-secondary" GridPane.rowIndex="8" GridPane.columnIndex="1" />
-            <Button text="Exit" onAction="#handleExit" styleClass="btn btn-secondary" GridPane.rowIndex="9" GridPane.columnIndex="1" />
+            <Label text="Predicted Price(TWD):" styleClass="form-label" GridPane.rowIndex="8" GridPane.columnIndex="0" />
+            <TextField fx:id="predictedPriceFieldInTWD" styleClass="form-control" GridPane.rowIndex="8" GridPane.columnIndex="1" />
+
+            <Button text="Data Visualization" onAction="#handleDataVisualization" styleClass="btn btn-secondary" GridPane.rowIndex="9" GridPane.columnIndex="1" />
+            <Button text="Exit" onAction="#handleExit" styleClass="btn btn-secondary" GridPane.rowIndex="10" GridPane.columnIndex="1" />
         </GridPane>
     </center>
     <bottom>

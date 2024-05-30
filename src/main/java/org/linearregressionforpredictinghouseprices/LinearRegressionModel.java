@@ -107,11 +107,8 @@ public class LinearRegressionModel {
         double price = coefficients[0] * houseAge + coefficients[1] * distanceToMRT + coefficients[2] * numConvenienceStores + coefficients[3] * latitude + coefficients[4] * longitude;
 
         // Y= house price of unit area (10000 New Taiwan Dollar/Ping, where Ping is a local unit, 1 Ping = 3.3 meter squared)
+        // this figure shows the price of a house in taiwan new dollar per 1 ping(3.3 meter squared)
         price *= 10000;
-        // this figure shows the price of a house in taiwan new dollar per ping(3.3 meter squared)
-
-        // price is predicted in taiwan new dollar, conversion to usd
-        price *= 0.031075628;
 
         price = Math.round(price * 100.0) / 100.0;
 

@@ -40,6 +40,9 @@ public class UserInterfaceController {
     private TextField predictedPriceField;
 
     @FXML
+    public TextField predictedPriceFieldInTWD;
+
+    @FXML
     private Button predictPriceButton;
 
     private final RealEstateData realEstateData = new RealEstateData();
@@ -169,7 +172,10 @@ public class UserInterfaceController {
         double predictedPrice = regressionModel.predictPrice(houseAge, distanceToMRT, numConvenienceStores, latitude, longitude);
 
         // display the price
-        predictedPriceField.setText(String.valueOf(predictedPrice));
+        // in USD (US Dollar)
+        predictedPriceField.setText(String.valueOf(Math.round((predictedPrice * 0.030864099) * 100.0) / 100.0));
+        // in TWD (Taiwan New Dollar)
+        predictedPriceFieldInTWD.setText(String.valueOf(predictedPrice));
 
         // save the input values and the predicted price to the database
         SaveToDatabase saveToDatabase = new SaveToDatabase();
@@ -191,14 +197,14 @@ public class UserInterfaceController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Visualization.fxml"));
             BorderPane root = loader.load();
             Scene scene = new Scene(root);
-            scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles.css")).toExternalForm());
             Stage secondaryStage = new Stage();
             secondaryStage.getIcons().add(new Image("file:data/icon.jpg"));
             secondaryStage.setScene(scene);
             secondaryStage.setTitle("Data Visualization");
             secondaryStage.show();
         } catch (Exception e) {
-            e.printStackTrace();
+            e.getMessage();
         }
     }
 
