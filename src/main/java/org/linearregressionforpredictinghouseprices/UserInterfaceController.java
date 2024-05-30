@@ -12,7 +12,6 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-
 import java.io.File;
 import java.util.List;
 import java.util.Objects;

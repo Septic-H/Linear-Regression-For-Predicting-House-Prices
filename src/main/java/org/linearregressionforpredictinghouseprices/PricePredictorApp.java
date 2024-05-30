@@ -6,7 +6,6 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-
 import java.util.Objects;
 
 public class PricePredictorApp extends Application {
