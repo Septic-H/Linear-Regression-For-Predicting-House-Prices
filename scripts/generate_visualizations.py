@@ -12,7 +12,7 @@ os.makedirs('../visuals', exist_ok=True)
 # Visualizations
 # Correlation heatmap
 plt.figure(figsize=(10, 6))
-sns.heatmap(data.corr(), annot=True, cmap='coolwarm', linewidths=0.5)
+sns.heatmap(data.iloc[:, 1:].corr(), annot=True, cmap='coolwarm', fmt=".2f")
 plt.savefig('../visuals/correlation_heatmap.png')
 
 # Scatter plots for each feature against house price
