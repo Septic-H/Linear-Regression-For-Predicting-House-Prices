@@ -1,8 +1,6 @@
 package org.linearregressionforpredictinghouseprices;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +31,17 @@ public class RealEstateData {
         }
 
         return records;
+    }
+
+    public void saveRecords(List<RealEstateRecord> records, String filename) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
+            writer.write("X2 house age,X3 distance to the nearest MRT station,X4 number of convenience stores,X5 latitude,X6 longitude,Y house price of unit area\n");
+            for (RealEstateRecord record : records) {
+                writer.write(record.getHouseAge() + "," + record.getDistanceToMRT() + "," + record.getNumConvenienceStores() + "," + record.getLatitude() + "," + record.getLongitude() + "," + record.getPredictedPrice() + "\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

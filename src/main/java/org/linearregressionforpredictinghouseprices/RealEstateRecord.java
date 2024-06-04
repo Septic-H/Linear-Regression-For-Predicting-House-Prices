@@ -8,6 +8,7 @@ public class RealEstateRecord {
     private double latitude;
     private double longitude;
     private double price;
+    private double predictedPrice;
 
     public String getTransactionDate() {
         return transactionDate;
@@ -63,5 +64,13 @@ public class RealEstateRecord {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public double getPredictedPrice() {
+        return predictedPrice;
+    }
+
+    public void setPredictedPrice(double predictedPrice) {
+        this.predictedPrice = predictedPrice;
     }
 }

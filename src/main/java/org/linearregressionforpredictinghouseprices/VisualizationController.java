@@ -18,6 +18,7 @@ public class VisualizationController {
     private List<String> imagePaths = new ArrayList<>();
 
     public VisualizationController() {
+        imagePaths.add("file:visuals/actual_vs_predicted_price_lineplot.png");
         imagePaths.add("file:visuals/Y_vs_X1.png");
         imagePaths.add("file:visuals/Y_vs_X2.png");
         imagePaths.add("file:visuals/Y_vs_X3.png");
@@ -62,7 +63,6 @@ public class VisualizationController {
 
     @FXML
     private void showPreviousImage() {
-        // Display the previous image in the list
         if (!imagePaths.isEmpty()) {
             int currentIndex = imagePaths.indexOf(imageView.getImage().getUrl());
             int previousIndex = (currentIndex - 1 + imagePaths.size()) % imagePaths.size();
