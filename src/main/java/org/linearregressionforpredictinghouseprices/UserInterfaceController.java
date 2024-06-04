@@ -49,6 +49,11 @@ public class UserInterfaceController {
 
     @FXML
     private void initialize() {
+        List<RealEstateRecord> realEstateRecords = realEstateData.loadRecords("data/real_estate_data.csv");
+        regressionModel.trainModel(realEstateRecords);
+
+        regressionModel.predictAndSavePrices(realEstateRecords);
+
         predictPriceButton.disableProperty().bind(
                 Bindings.createBooleanBinding(() ->
                                 houseAgeField.getText().isEmpty() || distanceToMRTField.getText().isEmpty() || numConvenienceStoresField.getText().isEmpty() || latitudeField.getText().isEmpty() || longitudeField.getText().isEmpty(),
@@ -185,9 +190,7 @@ public class UserInterfaceController {
     private void handleDataVisualization(ActionEvent event) {
         File visualsDir = new File("visuals");
 
-        if (visualsDir.exists() && visualsDir.isDirectory() && Objects.requireNonNull(visualsDir.list()).length == 7) {
-            System.out.println("Visualizations found.");
-        } else {
+        if (!visualsDir.exists() && !visualsDir.isDirectory() && Objects.requireNonNull(visualsDir.list()).length != 9) {
             DataVisualization dataVisualization = new DataVisualization();
             dataVisualization.generateVisualizations("scripts/generate_visualizations.py");
         }

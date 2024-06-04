@@ -1,5 +1,7 @@
 package org.linearregressionforpredictinghouseprices;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 public class LinearRegressionModel {
@@ -113,5 +115,21 @@ public class LinearRegressionModel {
         price = Math.round(price * 100.0) / 100.0;
 
         return price;
+    }
+
+    public void predictAndSavePrices(List<RealEstateRecord> realEstateRecords) {
+        File dataDir = new File("visuals", "predicted_prices_through_model.csv");
+        if (!dataDir.exists()) {
+            List<RealEstateRecord> predictedPrices = new ArrayList<>();
+            for (RealEstateRecord record : realEstateRecords) {
+                double predictedPrice = Math.round(((predictPrice(record.getHouseAge(), record.getDistanceToMRT(), record.getNumConvenienceStores(), record.getLatitude(), record.getLongitude()) / 10000) * 10.0) / 10.0);
+                record.setPredictedPrice(predictedPrice);
+
+                predictedPrices.add(record);
+            }
+
+            RealEstateData realEstateData = new RealEstateData();
+            realEstateData.saveRecords(predictedPrices, "data/predicted_prices_through_model.csv");
+        }
     }
 }
