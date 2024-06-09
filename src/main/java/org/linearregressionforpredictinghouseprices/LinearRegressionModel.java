@@ -122,7 +122,8 @@ public class LinearRegressionModel {
         if (!dataDir.exists()) {
             List<RealEstateRecord> predictedPrices = new ArrayList<>();
             for (RealEstateRecord record : realEstateRecords) {
-                double predictedPrice = Math.round(((predictPrice(record.getHouseAge(), record.getDistanceToMRT(), record.getNumConvenienceStores(), record.getLatitude(), record.getLongitude()) / 10000) * 10.0) / 10.0);
+                double predictedPrice = predictPrice(record.getHouseAge(), record.getDistanceToMRT(), record.getNumConvenienceStores(), record.getLatitude(), record.getLongitude()) / 10000;
+                predictedPrice = Math.round(predictedPrice * 10.0) / 10.0;
                 record.setPredictedPrice(predictedPrice);
 
                 predictedPrices.add(record);
